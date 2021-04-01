@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
   DestinationSearchScreen,
+  GuestDetailsScreen,
   HomeScreen,
   SearchResultsScreen,
 } from '@screens';
@@ -58,11 +59,18 @@ const HomeStack = createStackNavigator<HomeParamList>();
 
 function HomeNavigator() {
   return (
-    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+    <HomeStack.Navigator
+      initialRouteName='GuestDetailsScreen'
+      screenOptions={{ headerShown: false }}
+    >
       <HomeStack.Screen name='HomeScreen' component={HomeScreen} />
       <HomeStack.Screen
         name='DestinationSearchScreen'
         component={DestinationSearchScreen}
+      />
+      <HomeStack.Screen
+        name='GuestDetailsScreen'
+        component={GuestDetailsScreen}
       />
     </HomeStack.Navigator>
   );
