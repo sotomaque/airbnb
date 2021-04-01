@@ -1,10 +1,25 @@
 import { Entypo } from '@expo/vector-icons';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
-import { FlatList, SafeAreaView, Text, TextInput, View } from 'react-native';
+import {
+  FlatList,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+import { HomeParamList } from 'src/navigation/types';
 import searchResults from '../../../assets/data/search';
 import styles from './styles';
 
-const DestinationSearchScreen = () => {
+type DestinationSearchScreenProps = {
+  navigation: StackNavigationProp<HomeParamList, 'DestinationSearch'>;
+};
+
+const DestinationSearchScreen = ({
+  navigation,
+}: DestinationSearchScreenProps) => {
   const [inputText, setInputText] = useState<string>('');
 
   return (
@@ -22,12 +37,15 @@ const DestinationSearchScreen = () => {
         <FlatList
           data={searchResults}
           renderItem={({ item }) => (
-            <View style={styles.row}>
+            <Pressable
+              style={styles.row}
+              onPress={() => navigation.navigate('GuestDetails')}
+            >
               <View style={styles.iconContainer}>
                 <Entypo name='location-pin' size={30} color='black' />
               </View>
               <Text style={styles.locationLabel}>{item.description}</Text>
-            </View>
+            </Pressable>
           )}
         />
       </View>

@@ -15,6 +15,7 @@ export type HomeParamList = {
   Home: undefined;
   DestinationSearch: undefined;
   GuestDetails: undefined;
+  SearchResults: undefined;
 };
 
 export type SearchParamList = {

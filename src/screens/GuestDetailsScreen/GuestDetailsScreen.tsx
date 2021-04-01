@@ -1,14 +1,21 @@
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
+import { HomeParamList } from 'src/navigation/types';
 import styles from './styles';
 
-const GuestDetailsScreen = () => {
+type GuestDetailsScreenProps = {
+  navigation: StackNavigationProp<HomeParamList, 'GuestDetails'>;
+};
+
+const GuestDetailsScreen = ({ navigation }: GuestDetailsScreenProps) => {
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ justifyContent: 'space-between', height: '100%' }}>
+      {/* Guest Details Container */}
       <View style={styles.container}>
         {/* Adults */}
         <View style={styles.guestRow}>
@@ -91,6 +98,16 @@ const GuestDetailsScreen = () => {
           </View>
         </View>
       </View>
+
+      {/* Search Button */}
+      <Pressable
+        style={styles.searchButton}
+        onPress={() => {
+          navigation.navigate('SearchResults');
+        }}
+      >
+        <Text style={styles.searchLabel}>Search</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };

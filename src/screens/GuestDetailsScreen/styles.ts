@@ -40,6 +40,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     fontSize: 18,
   },
+  searchButton: {
+    marginBottom: 30,
+    backgroundColor: '#ff5a60',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 50,
+    marginHorizontal: 20,
+    borderRadius: 10,
+  },
+  searchLabel: { fontSize: 20, fontWeight: 'bold', color: 'white' },
 });
 
 export default styles;
