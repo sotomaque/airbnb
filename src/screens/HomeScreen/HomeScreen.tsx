@@ -1,7 +1,8 @@
+import { Listing } from '@components';
 import { Ionicons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { ImageBackground, Pressable, SafeAreaView, Text } from 'react-native';
+import { ImageBackground, Pressable, ScrollView, Text } from 'react-native';
 import { HomeParamList } from 'src/navigation/types';
 import styles from './styles';
 
@@ -11,7 +12,7 @@ type HomeScreenProps = {
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   return (
-    <SafeAreaView>
+    <ScrollView>
       {/* Search bar */}
       <Pressable style={styles.searchBar} onPress={() => console.warn('hi')}>
         <Ionicons name='ios-search-outline' size={24} color='#f15454' />
@@ -30,7 +31,9 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           <Text style={styles.buttonLabel}>Explore nearby stays</Text>
         </Pressable>
       </ImageBackground>
-    </SafeAreaView>
+
+      <Listing />
+    </ScrollView>
   );
 };
 
