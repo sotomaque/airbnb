@@ -14,7 +14,10 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {/* Search bar */}
-      <Pressable style={styles.searchBar} onPress={() => console.warn('hi')}>
+      <Pressable
+        style={styles.searchBar}
+        onPress={() => navigation.navigate('DestinationSearchScreen')}
+      >
         <Ionicons name='ios-search-outline' size={24} color='#f15454' />
         <Text style={styles.searchLabel}>Where are you going?</Text>
       </Pressable>

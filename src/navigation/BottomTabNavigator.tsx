@@ -3,7 +3,11 @@ import { Ionicons } from '@expo/vector-icons';
 import useColorScheme from '@hooks/useColorScheme';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen, SearchResultsScreen } from '@screens';
+import {
+  DestinationSearchScreen,
+  HomeScreen,
+  SearchResultsScreen,
+} from '@screens';
 import * as React from 'react';
 import { BottomTabParamList, HomeParamList, SearchParamList } from './types';
 
@@ -56,6 +60,10 @@ function HomeNavigator() {
   return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name='HomeScreen' component={HomeScreen} />
+      <HomeStack.Screen
+        name='DestinationSearchScreen'
+        component={DestinationSearchScreen}
+      />
     </HomeStack.Navigator>
   );
 }
