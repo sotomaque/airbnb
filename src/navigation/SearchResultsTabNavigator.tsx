@@ -12,7 +12,12 @@ const SearchResultsTabNavigator = () => {
 
   return (
     <SearchTab.Navigator
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+      tabBarOptions={{
+        activeTintColor: Colors[colorScheme].tint,
+        indicatorStyle: {
+          backgroundColor: Colors[colorScheme].tint,
+        },
+      }}
     >
       <SearchTab.Screen name='List' component={SearchResultsScreen} />
       <SearchTab.Screen name='Map' component={SearchResultsScreen} />

@@ -1,16 +1,9 @@
-import { Entypo } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useState } from 'react';
-import {
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import React from 'react';
+import { SafeAreaView, View } from 'react-native';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { HomeParamList } from 'src/navigation/types';
-import searchResults from '../../../assets/data/search';
+import SuggestionRow from './components/SuggestionRow';
 import styles from './styles';
 
 type DestinationSearchScreenProps = {
@@ -20,33 +13,27 @@ type DestinationSearchScreenProps = {
 const DestinationSearchScreen = ({
   navigation,
 }: DestinationSearchScreenProps) => {
-  const [inputText, setInputText] = useState<string>('');
-
   return (
     <SafeAreaView>
       <View style={styles.container}>
         {/* Input */}
-        <TextInput
-          style={styles.textInput}
+        <GooglePlacesAutocomplete
           placeholder='Where are you going?'
-          value={inputText}
-          onChangeText={text => setInputText(text)}
-        />
-
-        {/* Results List */}
-        <FlatList
-          data={searchResults}
-          renderItem={({ item }) => (
-            <Pressable
-              style={styles.row}
-              onPress={() => navigation.navigate('GuestDetails')}
-            >
-              <View style={styles.iconContainer}>
-                <Entypo name='location-pin' size={30} color='black' />
-              </View>
-              <Text style={styles.locationLabel}>{item.description}</Text>
-            </Pressable>
-          )}
+          onPress={(data, details = null) => {
+            navigation.navigate('GuestDetails');
+          }}
+          enablePoweredByContainer={false}
+          suppressDefaultStyles
+          styles={{
+            textInput: styles.textInput,
+          }}
+          fetchDetails
+          query={{
+            key: 'AIzaSyCc2S9XzrUb4Xtz1sGGGbgZWe-m-qcNZzU',
+            language: 'en',
+            types: '(cities)',
+          }}
+          renderRow={item => <SuggestionRow item={item} />}
         />
       </View>
     </SafeAreaView>
