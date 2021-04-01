@@ -2,12 +2,10 @@ import Colors from '@constants/Colors';
 import { AntDesign, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import useColorScheme from '@hooks/useColorScheme';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { SearchResultsScreen } from '@screens';
+import { HomeScreen } from '@screens';
 import * as React from 'react';
 import ExploreNavigator from './ExploreNavigator';
-import HomeNavigator from './HomeNavigator';
-import { HomeTabParamList, SearchParamList } from './types';
+import { HomeTabParamList } from './types';
 
 const HomeTab = createBottomTabNavigator<HomeTabParamList>();
 
@@ -16,7 +14,6 @@ const HomeTabNavigator = () => {
 
   return (
     <HomeTab.Navigator
-      initialRouteName='Explore'
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
       <HomeTab.Screen
@@ -30,7 +27,7 @@ const HomeTabNavigator = () => {
       />
       <HomeTab.Screen
         name='Saved'
-        component={HomeNavigator}
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name='hearto' size={24} color={color} />
@@ -39,7 +36,7 @@ const HomeTabNavigator = () => {
       />
       <HomeTab.Screen
         name='Trips'
-        component={SearchNavigator}
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name='airbnb' size={24} color={color} />
@@ -48,7 +45,7 @@ const HomeTabNavigator = () => {
       />
       <HomeTab.Screen
         name='Inbox'
-        component={SearchNavigator}
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name='message1' size={24} color={color} />
@@ -57,7 +54,7 @@ const HomeTabNavigator = () => {
       />
       <HomeTab.Screen
         name='Profile'
-        component={SearchNavigator}
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons
@@ -73,19 +70,3 @@ const HomeTabNavigator = () => {
 };
 
 export default HomeTabNavigator;
-
-// Each tab has its own navigation stack, you can read more about this pattern here:
-// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-
-const SearchStack = createStackNavigator<SearchParamList>();
-
-function SearchNavigator() {
-  return (
-    <SearchStack.Navigator>
-      <SearchStack.Screen
-        name='SearchResults'
-        component={SearchResultsScreen}
-      />
-    </SearchStack.Navigator>
-  );
-}

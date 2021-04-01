@@ -1,4 +1,4 @@
-export type HomeStackParamList = {
+export type RootStackParamList = {
   Root: undefined;
   DestinationSearch: undefined;
   GuestDetails: undefined;
@@ -11,6 +11,11 @@ export type HomeTabParamList = {
   Trips: undefined;
   Inbox: undefined;
   Profile: undefined;
+};
+
+export type SearchResultsTabParamList = {
+  List: undefined;
+  Map: undefined;
 };
 
 export type HomeParamList = {

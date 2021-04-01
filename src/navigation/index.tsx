@@ -8,9 +8,8 @@ import { DestinationSearchScreen, GuestDetailsScreen } from '@screens';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import { HomeStackParamList } from '../types';
+import { RootStackParamList } from '../types';
 import HomeTabNavigator from './HomeTabNavigator';
-import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({
   colorScheme,
@@ -19,7 +18,6 @@ export default function Navigation({
 }) {
   return (
     <NavigationContainer
-      linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
@@ -27,7 +25,7 @@ export default function Navigation({
   );
 }
 
-const Stack = createStackNavigator<HomeStackParamList>();
+const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (

@@ -1,19 +1,25 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen, SearchResultsScreen } from '@screens';
+import { HomeScreen } from '@screens';
 import React from 'react';
+import SearchResultsTabNavigator from './SearchResultsTabNavigator';
 import { ExploreParamList } from './types';
 
 const ExploreStack = createStackNavigator<ExploreParamList>();
 
 const ExploreNavigator = () => {
   return (
-    <ExploreStack.Navigator screenOptions={{ headerShown: false }}>
-      <ExploreStack.Screen name='Welcome' component={HomeScreen} />
+    <ExploreStack.Navigator>
+      <ExploreStack.Screen
+        name='Welcome'
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
       <ExploreStack.Screen
         name='SearchResults'
-        component={SearchResultsScreen}
+        component={SearchResultsTabNavigator}
         options={{
-          headerShown: true,
           headerTitle: 'Search your destination',
         }}
       />
