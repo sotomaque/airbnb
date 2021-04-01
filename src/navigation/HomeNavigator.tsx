@@ -3,6 +3,7 @@ import {
   DestinationSearchScreen,
   GuestDetailsScreen,
   HomeScreen,
+  SearchResultsScreen,
 } from '@screens';
 import React from 'react';
 import { HomeParamList } from './types';
@@ -23,6 +24,14 @@ const HomeNavigator = () => {
         options={{
           headerShown: true,
           headerTitle: 'How many people?',
+        }}
+      />
+      <HomeStack.Screen
+        name='SearchResults'
+        component={SearchResultsScreen}
+        options={{
+          headerShown: true,
+          headerTitle: 'Search your destination',
         }}
       />
     </HomeStack.Navigator>

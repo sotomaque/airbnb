@@ -1,9 +1,11 @@
-export type RootStackParamList = {
+export type HomeStackParamList = {
   Root: undefined;
+  DestinationSearch: undefined;
+  GuestDetails: undefined;
   NotFound: undefined;
 };
 
-export type BottomTabParamList = {
+export type HomeTabParamList = {
   Explore: undefined;
   Saved: undefined;
   Trips: undefined;
@@ -12,12 +14,17 @@ export type BottomTabParamList = {
 };
 
 export type HomeParamList = {
-  Home: undefined;
+  Home: { screen: string; params: { screen: string } } | undefined;
   DestinationSearch: undefined;
   GuestDetails: undefined;
   SearchResults: undefined;
 };
 
 export type SearchParamList = {
+  SearchResults: undefined;
+};
+
+export type ExploreParamList = {
+  Welcome: undefined;
   SearchResults: undefined;
 };

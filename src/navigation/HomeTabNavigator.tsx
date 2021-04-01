@@ -5,38 +5,39 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SearchResultsScreen } from '@screens';
 import * as React from 'react';
+import ExploreNavigator from './ExploreNavigator';
 import HomeNavigator from './HomeNavigator';
-import { BottomTabParamList, SearchParamList } from './types';
+import { HomeTabParamList, SearchParamList } from './types';
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+const HomeTab = createBottomTabNavigator<HomeTabParamList>();
 
-const BottomTabNavigator = () => {
+const HomeTabNavigator = () => {
   const colorScheme = useColorScheme();
 
   return (
-    <BottomTab.Navigator
+    <HomeTab.Navigator
       initialRouteName='Explore'
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
-      <BottomTab.Screen
+      <HomeTab.Screen
         name='Explore'
-        component={HomeNavigator}
+        component={ExploreNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name='search1' size={24} color={color} />
           ),
         }}
       />
-      <BottomTab.Screen
+      <HomeTab.Screen
         name='Saved'
-        component={SearchNavigator}
+        component={HomeNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name='hearto' size={24} color={color} />
           ),
         }}
       />
-      <BottomTab.Screen
+      <HomeTab.Screen
         name='Trips'
         component={SearchNavigator}
         options={{
@@ -45,7 +46,7 @@ const BottomTabNavigator = () => {
           ),
         }}
       />
-      <BottomTab.Screen
+      <HomeTab.Screen
         name='Inbox'
         component={SearchNavigator}
         options={{
@@ -54,7 +55,7 @@ const BottomTabNavigator = () => {
           ),
         }}
       />
-      <BottomTab.Screen
+      <HomeTab.Screen
         name='Profile'
         component={SearchNavigator}
         options={{
@@ -67,11 +68,11 @@ const BottomTabNavigator = () => {
           ),
         }}
       />
-    </BottomTab.Navigator>
+    </HomeTab.Navigator>
   );
 };
 
-export default BottomTabNavigator;
+export default HomeTabNavigator;
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
