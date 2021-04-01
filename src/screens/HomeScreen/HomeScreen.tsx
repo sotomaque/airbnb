@@ -7,7 +7,7 @@ import wallpaper from '../../../assets/images/wallpaper.jpeg';
 import styles from './styles';
 
 type HomeScreenProps = {
-  navigation: StackNavigationProp<HomeParamList, 'HomeScreen'>;
+  navigation: StackNavigationProp<HomeParamList, 'Home'>;
 };
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
@@ -16,7 +16,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       {/* Search bar */}
       <Pressable
         style={styles.searchBar}
-        onPress={() => navigation.navigate('DestinationSearchScreen')}
+        onPress={() => navigation.navigate('DestinationSearch')}
       >
         <Ionicons name='ios-search-outline' size={24} color='#f15454' />
         <Text style={styles.searchLabel}>Where are you going?</Text>
