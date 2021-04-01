@@ -1,6 +1,5 @@
 import HomeScreen from './HomeScreen';
 import NotFoundScreen from './NotFoundScreen';
-import TabOneScreen from './TabOneScreen';
-import TabTwoScreen from './TabTwoScreen';
+import SearchResultsScreen from './SearchResultsScreen';
 
-export { NotFoundScreen, TabOneScreen, TabTwoScreen, HomeScreen };
+export { HomeScreen, NotFoundScreen, SearchResultsScreen };

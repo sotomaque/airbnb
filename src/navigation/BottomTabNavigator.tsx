@@ -3,9 +3,9 @@ import { Ionicons } from '@expo/vector-icons';
 import useColorScheme from '@hooks/useColorScheme';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen, TabTwoScreen } from '@screens';
+import { HomeScreen, SearchResultsScreen } from '@screens';
 import * as React from 'react';
-import { BottomTabParamList, HomeParamList, TabTwoParamList } from './types';
+import { BottomTabParamList, HomeParamList, SearchParamList } from './types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -27,8 +27,8 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name='TabTwo'
-        component={TabTwoNavigator}
+        name='Search'
+        component={SearchNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name='ios-code' color={color} />
@@ -60,16 +60,15 @@ function HomeNavigator() {
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const SearchStack = createStackNavigator<SearchParamList>();
 
-function TabTwoNavigator() {
+function SearchNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name='TabTwoScreen'
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <SearchStack.Navigator>
+      <SearchStack.Screen
+        name='SearchResultsScreen'
+        component={SearchResultsScreen}
       />
-    </TabTwoStack.Navigator>
+    </SearchStack.Navigator>
   );
 }
