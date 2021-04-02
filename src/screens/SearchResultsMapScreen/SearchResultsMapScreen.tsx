@@ -1,12 +1,14 @@
 import { CustomMarker, ListingCarouselItem } from '@components';
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { FlatList, useWindowDimensions, View } from 'react-native';
 import MapView from 'react-native-maps';
 import places from '../../../assets/data/feed';
 import styles from './styles';
 
 const SearchResultsMapScreen = () => {
   const [selectedPlaceId, setSelectedPlaceId] = useState<number | null>(null);
+
+  const width = useWindowDimensions().width;
 
   return (
     <View>
@@ -33,7 +35,15 @@ const SearchResultsMapScreen = () => {
 
       {/* Listng Carousel */}
       <View style={styles.carouselContainer}>
-        <ListingCarouselItem listing={places[0]} />
+        <FlatList
+          data={places}
+          renderItem={({ item }) => <ListingCarouselItem listing={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          snapToInterval={width - 60}
+          snapToAlignment='center'
+          decelerationRate='fast'
+        />
       </View>
     </View>
   );

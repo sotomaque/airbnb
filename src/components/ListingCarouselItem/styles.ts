@@ -3,6 +3,14 @@ const styles = StyleSheet.create({
   container: {
     height: 120,
     padding: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
   },
   innerContainer: {
     flexDirection: 'row',
@@ -20,15 +28,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   descriptionLabel: {
-    fontSize: 18,
-    lineHeight: 24,
+    fontSize: 15,
   },
   detailsLabel: {
     marginVertical: 10,
     color: '#5b5b5b',
   },
   pricesLabel: {
-    fontSize: 18,
+    fontSize: 16,
     marginVertical: 10,
   },
   newPriceLabel: {
