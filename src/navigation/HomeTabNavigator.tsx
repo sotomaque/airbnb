@@ -2,7 +2,7 @@ import Colors from '@constants/Colors';
 import { AntDesign, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import useColorScheme from '@hooks/useColorScheme';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen } from '@screens';
+import { HomeScreen, ProfileScreen } from '@screens';
 import * as React from 'react';
 import ExploreNavigator from './ExploreNavigator';
 import { HomeTabParamList } from './types';
@@ -54,7 +54,7 @@ const HomeTabNavigator = () => {
       />
       <HomeTab.Screen
         name='Profile'
-        component={HomeScreen}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons

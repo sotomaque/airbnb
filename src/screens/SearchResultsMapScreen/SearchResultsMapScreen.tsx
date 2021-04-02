@@ -33,6 +33,7 @@ const SearchResultsMapScreen = () => {
     const index = places.findIndex(
       (place: ListingType) => place.id === selectedPlaceId
     );
+    if (index === -1) return;
     // update ref to scroll to index
     flatListRef?.current?.scrollToIndex({ index });
 
