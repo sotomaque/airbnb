@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "airbnb8de19651": {}
+      },
+      "function": {
+        "airbnb8de19651PostConfirmation": {
+          "deploymentBucketName": "amplify-airbnb-dev-221321-deployment",
+          "s3Key": "amplify-builds/airbnb8de19651PostConfirmation-6f2f7a77562b78565353-build.zip"
+        }
       }
     }
   }
