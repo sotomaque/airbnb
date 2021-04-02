@@ -103,7 +103,7 @@ const GuestDetailsScreen = ({ navigation }: GuestDetailsScreenProps) => {
       <Pressable
         style={styles.searchButton}
         onPress={() => {
-          navigation.navigate('Home', {
+          navigation.push('Home', {
             screen: 'Explore',
             params: {
               screen: 'SearchResults',

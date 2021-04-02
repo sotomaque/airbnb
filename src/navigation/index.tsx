@@ -54,6 +54,9 @@ function RootNavigator() {
         component={DestinationSearchScreen}
         options={{
           title: 'Search your destination',
+          headerBackTitleVisible: false,
+          headerTintColor: '#ff5a60',
+          headerTitleStyle: { color: 'black' },
         }}
       />
       <Stack.Screen
@@ -61,6 +64,9 @@ function RootNavigator() {
         component={GuestDetailsScreen}
         options={{
           title: 'How many people?',
+          headerBackTitleVisible: false,
+          headerTintColor: '#ff5a60',
+          headerTitleStyle: { color: 'black' },
         }}
       />
       <Stack.Screen

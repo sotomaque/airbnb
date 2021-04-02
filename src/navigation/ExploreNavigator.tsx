@@ -1,7 +1,4 @@
-import {
-  createStackNavigator,
-  StackNavigationOptions,
-} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '@screens';
 import React from 'react';
 import SearchResultsTabNavigator from './SearchResultsTabNavigator';
@@ -9,18 +6,9 @@ import { ExploreParamList } from './types';
 
 const ExploreStack = createStackNavigator<ExploreParamList>();
 
-const navigatorOptions: StackNavigationOptions = {
-  headerTitleStyle: {
-    fontSize: 20,
-  },
-  headerBackTitleStyle: {
-    fontSize: 14,
-  },
-};
-
 const ExploreNavigator = () => {
   return (
-    <ExploreStack.Navigator screenOptions={navigatorOptions}>
+    <ExploreStack.Navigator>
       <ExploreStack.Screen
         name='Welcome'
         component={HomeScreen}
@@ -33,6 +21,9 @@ const ExploreNavigator = () => {
         component={SearchResultsTabNavigator}
         options={{
           title: 'Search your destination',
+          headerBackTitleVisible: false,
+          headerTintColor: '#ff5a60',
+          headerTitleStyle: { color: 'black' },
         }}
       />
     </ExploreStack.Navigator>
