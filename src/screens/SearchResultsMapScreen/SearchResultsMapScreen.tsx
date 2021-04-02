@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FlatList, useWindowDimensions, View, ViewToken } from 'react-native';
 import MapView from 'react-native-maps';
 import places from '../../../assets/data/feed';
+import { ListingType } from '../../components/Listing/Listing';
 import styles from './styles';
 
 type ViewableChangedPropsType = {
@@ -10,8 +11,9 @@ type ViewableChangedPropsType = {
 };
 
 const SearchResultsMapScreen = () => {
-  const [selectedPlaceId, setSelectedPlaceId] = useState<number | null>(null);
+  const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
   const flatListRef = useRef(null);
+  const mapRef = useRef(null);
   const viewConfig = useRef({ itemVisiblePercentThreshold: 70 });
 
   const onViewChanged = useRef(
@@ -28,14 +30,27 @@ const SearchResultsMapScreen = () => {
     if (setSelectedPlaceId === null || flatListRef === null) return;
 
     // get index
-    const index = places.findIndex(place => place.id === selectedPlaceId);
+    const index = places.findIndex(
+      (place: ListingType) => place.id === selectedPlaceId
+    );
     // update ref to scroll to index
     index !== -1 && flatListRef?.current?.scrollToIndex({ index });
+
+    // update map
+    const selectedPlace = places[index];
+    const region = {
+      latitude: selectedPlace?.coordinate.latitude,
+      longitude: selectedPlace?.coordinate.longitude,
+      latitudeDelta: 0.8,
+      longitudeDelta: 0.8,
+    };
+    mapRef.current?.animateToRegion(region);
   }, [selectedPlaceId]);
 
   return (
     <View>
       <MapView
+        ref={mapRef}
         provider='google'
         style={styles.map}
         initialRegion={{
@@ -45,7 +60,7 @@ const SearchResultsMapScreen = () => {
           longitudeDelta: 0.8,
         }}
       >
-        {places.map(place => (
+        {places.map((place: ListingType) => (
           <CustomMarker
             key={place.id}
             coordinates={place.coordinate}
@@ -61,9 +76,7 @@ const SearchResultsMapScreen = () => {
         <FlatList
           ref={flatListRef}
           data={places}
-          renderItem={({ item, index }) => (
-            <ListingCarouselItem listing={item} />
-          )}
+          renderItem={({ item }) => <ListingCarouselItem listing={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}
           snapToInterval={width - 60}
