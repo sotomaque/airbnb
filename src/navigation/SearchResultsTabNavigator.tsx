@@ -1,7 +1,7 @@
 import Colors from '@constants/Colors';
 import useColorScheme from '@hooks/useColorScheme';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { SearchResultsScreen } from '@screens';
+import { SearchResultsMapScreen, SearchResultsScreen } from '@screens';
 import * as React from 'react';
 import { SearchResultsTabParamList } from './types';
 
@@ -20,7 +20,7 @@ const SearchResultsTabNavigator = () => {
       }}
     >
       <SearchTab.Screen name='List' component={SearchResultsScreen} />
-      <SearchTab.Screen name='Map' component={SearchResultsScreen} />
+      <SearchTab.Screen name='Map' component={SearchResultsMapScreen} />
     </SearchTab.Navigator>
   );
 };

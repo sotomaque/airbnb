@@ -3,7 +3,10 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  StackNavigationOptions,
+} from '@react-navigation/stack';
 import { DestinationSearchScreen, GuestDetailsScreen } from '@screens';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
@@ -27,9 +30,18 @@ export default function Navigation({
 
 const Stack = createStackNavigator<RootStackParamList>();
 
+const navigatorOptions: StackNavigationOptions = {
+  headerTitleStyle: {
+    fontSize: 20,
+  },
+  headerBackTitleStyle: {
+    fontSize: 14,
+  },
+};
+
 function RootNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={navigatorOptions}>
       <Stack.Screen
         name='Home'
         component={HomeTabNavigator}
