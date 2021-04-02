@@ -34,7 +34,7 @@ const SearchResultsMapScreen = () => {
       (place: ListingType) => place.id === selectedPlaceId
     );
     // update ref to scroll to index
-    index !== -1 && flatListRef?.current?.scrollToIndex({ index });
+    flatListRef?.current?.scrollToIndex({ index });
 
     // update map
     const selectedPlace = places[index];
