@@ -1,24 +1,8 @@
+import { Listing as ListingType } from '@api';
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { Image, Pressable, Text } from 'react-native';
 import styles from './styles';
-
-export type ListingType = {
-  id: string;
-  image: string;
-  type: string;
-  title: string;
-  description: string;
-  bathroom: number;
-  bedroom: number;
-  oldPrice: number;
-  newPrice: number;
-  totalPrice: number;
-  coordinate: {
-    latitude: number;
-    longitude: number;
-  };
-};
 
 type ListingProps = {
   listing: ListingType;

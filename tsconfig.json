@@ -11,11 +11,14 @@
     "baseUrl": ".",
     "allowJs": true,
     "paths": {
+      "@api": ["src/API.ts"],
       "@components": ["src/components"],
       "@constants/*": ["src/constants/*"],
+      "@graphql/*": ["src/graphql/*"],
       "@hooks/*": ["src/hooks/*"],
       "@navigation": ["src/navigation"],
-      "@screens": ["src/screens"]
+      "@screens": ["src/screens"],
+      "@utils": ["src/utils"]
     }
   }
 }
