@@ -2,6 +2,7 @@ export type RootStackParamList = {
   Root: undefined;
   DestinationSearch: undefined;
   GuestDetails: undefined;
+  Listing: { listingId: string | number };
   NotFound: undefined;
 };
 

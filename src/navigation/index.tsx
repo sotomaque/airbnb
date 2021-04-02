@@ -7,7 +7,11 @@ import {
   createStackNavigator,
   StackNavigationOptions,
 } from '@react-navigation/stack';
-import { DestinationSearchScreen, GuestDetailsScreen } from '@screens';
+import {
+  DestinationSearchScreen,
+  GuestDetailsScreen,
+  ListingScreen,
+} from '@screens';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -64,6 +68,16 @@ function RootNavigator() {
         component={GuestDetailsScreen}
         options={{
           title: 'How many people?',
+          headerBackTitleVisible: false,
+          headerTintColor: '#ff5a60',
+          headerTitleStyle: { color: 'black' },
+        }}
+      />
+      <Stack.Screen
+        name='Listing'
+        component={ListingScreen}
+        options={{
+          title: 'Accomodation',
           headerBackTitleVisible: false,
           headerTintColor: '#ff5a60',
           headerTitleStyle: { color: 'black' },

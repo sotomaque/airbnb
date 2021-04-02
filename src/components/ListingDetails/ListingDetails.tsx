@@ -1,6 +1,5 @@
-import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import { Image, Pressable, Text } from 'react-native';
+import { Image, ScrollView, Text } from 'react-native';
 import styles from './styles';
 
 export type ListingType = {
@@ -24,14 +23,9 @@ type ListingProps = {
   listing: ListingType;
 };
 
-const Listing = ({ listing }: ListingProps) => {
-  const naigation = useNavigation();
-
+const ListingDetails = ({ listing }: ListingProps) => {
   return (
-    <Pressable
-      onPress={() => naigation.navigate('Listing', { listingId: listing.id })}
-      style={styles.container}
-    >
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       {/* Listing Image */}
       <Image
         style={styles.image}
@@ -58,8 +52,11 @@ const Listing = ({ listing }: ListingProps) => {
 
       {/* Total Price - Text */}
       <Text style={styles.totalPriceLabel}>${listing.totalPrice} total</Text>
-    </Pressable>
+
+      {/* Full Description */}
+      <Text style={styles.longDescription}>{listing.description}</Text>
+    </ScrollView>
   );
 };
 
-export default Listing;
+export default ListingDetails;

@@ -1,5 +1,12 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import { Image, Text, useWindowDimensions, View } from 'react-native';
+import {
+  Image,
+  Pressable,
+  Text,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import styles from './styles';
 
 export type ListingType = {
@@ -25,8 +32,13 @@ type ListingProps = {
 
 const ListingCarouselItem = ({ listing }: ListingProps) => {
   const width = useWindowDimensions().width;
+  const naigation = useNavigation();
+
   return (
-    <View style={[styles.container, { width: width - 60 }]}>
+    <Pressable
+      style={[styles.container, { width: width - 60 }]}
+      onPress={() => naigation.navigate('Listing', { listingId: listing.id })}
+    >
       <View style={styles.innerContainer}>
         {/* Listing Image */}
         <Image
@@ -53,7 +65,7 @@ const ListingCarouselItem = ({ listing }: ListingProps) => {
           </Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
