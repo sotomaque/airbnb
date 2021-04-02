@@ -31,3 +31,52 @@ export const listUsers = /* GraphQL */ `
     }
   }
 `;
+export const getListing = /* GraphQL */ `
+  query GetListing($id: ID!) {
+    getListing(id: $id) {
+      id
+      image
+      type
+      title
+      description
+      maxGuests
+      petsAllowed
+      bed
+      bath
+      oldPrice
+      currentPrice
+      latitude
+      longitude
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listListings = /* GraphQL */ `
+  query ListListings(
+    $filter: ModelListingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listListings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        image
+        type
+        title
+        description
+        maxGuests
+        petsAllowed
+        bed
+        bath
+        oldPrice
+        currentPrice
+        latitude
+        longitude
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

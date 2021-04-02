@@ -3,3 +3,21 @@ type User @model {
   username: String!
   email: String!
 }
+
+type Listing @model {
+  id: ID!
+  image: String!
+  type: String!
+  title: String!
+  description: String!
+  maxGuests: Int!
+  petsAllowed: Boolean
+
+  bed: Int!
+  bath: Int!
+  oldPrice: Float
+  currentPrice: Float!
+
+  latitude: Float!
+  longitude: Float!
+}

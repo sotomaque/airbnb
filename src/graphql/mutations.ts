@@ -44,3 +44,75 @@ export const deleteUser = /* GraphQL */ `
     }
   }
 `;
+export const createListing = /* GraphQL */ `
+  mutation CreateListing(
+    $input: CreateListingInput!
+    $condition: ModelListingConditionInput
+  ) {
+    createListing(input: $input, condition: $condition) {
+      id
+      image
+      type
+      title
+      description
+      maxGuests
+      petsAllowed
+      bed
+      bath
+      oldPrice
+      currentPrice
+      latitude
+      longitude
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateListing = /* GraphQL */ `
+  mutation UpdateListing(
+    $input: UpdateListingInput!
+    $condition: ModelListingConditionInput
+  ) {
+    updateListing(input: $input, condition: $condition) {
+      id
+      image
+      type
+      title
+      description
+      maxGuests
+      petsAllowed
+      bed
+      bath
+      oldPrice
+      currentPrice
+      latitude
+      longitude
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteListing = /* GraphQL */ `
+  mutation DeleteListing(
+    $input: DeleteListingInput!
+    $condition: ModelListingConditionInput
+  ) {
+    deleteListing(input: $input, condition: $condition) {
+      id
+      image
+      type
+      title
+      description
+      maxGuests
+      petsAllowed
+      bed
+      bath
+      oldPrice
+      currentPrice
+      latitude
+      longitude
+      createdAt
+      updatedAt
+    }
+  }
+`;

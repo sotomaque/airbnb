@@ -75,6 +75,110 @@ export type DeleteUserInput = {
   id?: string | null,
 };
 
+export type CreateListingInput = {
+  id?: string | null,
+  image: string,
+  type: string,
+  title: string,
+  description: string,
+  maxGuests: number,
+  petsAllowed?: boolean | null,
+  bed: number,
+  bath: number,
+  oldPrice?: number | null,
+  currentPrice: number,
+  latitude: number,
+  longitude: number,
+};
+
+export type ModelListingConditionInput = {
+  image?: ModelStringInput | null,
+  type?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  maxGuests?: ModelIntInput | null,
+  petsAllowed?: ModelBooleanInput | null,
+  bed?: ModelIntInput | null,
+  bath?: ModelIntInput | null,
+  oldPrice?: ModelFloatInput | null,
+  currentPrice?: ModelFloatInput | null,
+  latitude?: ModelFloatInput | null,
+  longitude?: ModelFloatInput | null,
+  and?: Array< ModelListingConditionInput | null > | null,
+  or?: Array< ModelListingConditionInput | null > | null,
+  not?: ModelListingConditionInput | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type ModelFloatInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type Listing = {
+  __typename: "Listing",
+  id?: string,
+  image?: string,
+  type?: string,
+  title?: string,
+  description?: string,
+  maxGuests?: number,
+  petsAllowed?: boolean | null,
+  bed?: number,
+  bath?: number,
+  oldPrice?: number | null,
+  currentPrice?: number,
+  latitude?: number,
+  longitude?: number,
+  createdAt?: string,
+  updatedAt?: string,
+};
+
+export type UpdateListingInput = {
+  id: string,
+  image?: string | null,
+  type?: string | null,
+  title?: string | null,
+  description?: string | null,
+  maxGuests?: number | null,
+  petsAllowed?: boolean | null,
+  bed?: number | null,
+  bath?: number | null,
+  oldPrice?: number | null,
+  currentPrice?: number | null,
+  latitude?: number | null,
+  longitude?: number | null,
+};
+
+export type DeleteListingInput = {
+  id?: string | null,
+};
+
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
   username?: ModelStringInput | null,
@@ -103,6 +207,31 @@ export type ModelIDInput = {
 export type ModelUserConnection = {
   __typename: "ModelUserConnection",
   items?:  Array<User | null > | null,
+  nextToken?: string | null,
+};
+
+export type ModelListingFilterInput = {
+  id?: ModelIDInput | null,
+  image?: ModelStringInput | null,
+  type?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  maxGuests?: ModelIntInput | null,
+  petsAllowed?: ModelBooleanInput | null,
+  bed?: ModelIntInput | null,
+  bath?: ModelIntInput | null,
+  oldPrice?: ModelFloatInput | null,
+  currentPrice?: ModelFloatInput | null,
+  latitude?: ModelFloatInput | null,
+  longitude?: ModelFloatInput | null,
+  and?: Array< ModelListingFilterInput | null > | null,
+  or?: Array< ModelListingFilterInput | null > | null,
+  not?: ModelListingFilterInput | null,
+};
+
+export type ModelListingConnection = {
+  __typename: "ModelListingConnection",
+  items?:  Array<Listing | null > | null,
   nextToken?: string | null,
 };
 
@@ -154,6 +283,84 @@ export type DeleteUserMutation = {
   } | null,
 };
 
+export type CreateListingMutationVariables = {
+  input?: CreateListingInput,
+  condition?: ModelListingConditionInput | null,
+};
+
+export type CreateListingMutation = {
+  createListing?:  {
+    __typename: "Listing",
+    id: string,
+    image: string,
+    type: string,
+    title: string,
+    description: string,
+    maxGuests: number,
+    petsAllowed?: boolean | null,
+    bed: number,
+    bath: number,
+    oldPrice?: number | null,
+    currentPrice: number,
+    latitude: number,
+    longitude: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateListingMutationVariables = {
+  input?: UpdateListingInput,
+  condition?: ModelListingConditionInput | null,
+};
+
+export type UpdateListingMutation = {
+  updateListing?:  {
+    __typename: "Listing",
+    id: string,
+    image: string,
+    type: string,
+    title: string,
+    description: string,
+    maxGuests: number,
+    petsAllowed?: boolean | null,
+    bed: number,
+    bath: number,
+    oldPrice?: number | null,
+    currentPrice: number,
+    latitude: number,
+    longitude: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteListingMutationVariables = {
+  input?: DeleteListingInput,
+  condition?: ModelListingConditionInput | null,
+};
+
+export type DeleteListingMutation = {
+  deleteListing?:  {
+    __typename: "Listing",
+    id: string,
+    image: string,
+    type: string,
+    title: string,
+    description: string,
+    maxGuests: number,
+    petsAllowed?: boolean | null,
+    bed: number,
+    bath: number,
+    oldPrice?: number | null,
+    currentPrice: number,
+    latitude: number,
+    longitude: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetUserQueryVariables = {
   id?: string,
 };
@@ -190,6 +397,62 @@ export type ListUsersQuery = {
   } | null,
 };
 
+export type GetListingQueryVariables = {
+  id?: string,
+};
+
+export type GetListingQuery = {
+  getListing?:  {
+    __typename: "Listing",
+    id: string,
+    image: string,
+    type: string,
+    title: string,
+    description: string,
+    maxGuests: number,
+    petsAllowed?: boolean | null,
+    bed: number,
+    bath: number,
+    oldPrice?: number | null,
+    currentPrice: number,
+    latitude: number,
+    longitude: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListListingsQueryVariables = {
+  filter?: ModelListingFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListListingsQuery = {
+  listListings?:  {
+    __typename: "ModelListingConnection",
+    items?:  Array< {
+      __typename: "Listing",
+      id: string,
+      image: string,
+      type: string,
+      title: string,
+      description: string,
+      maxGuests: number,
+      petsAllowed?: boolean | null,
+      bed: number,
+      bath: number,
+      oldPrice?: number | null,
+      currentPrice: number,
+      latitude: number,
+      longitude: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type OnCreateUserSubscription = {
   onCreateUser?:  {
     __typename: "User",
@@ -218,6 +481,69 @@ export type OnDeleteUserSubscription = {
     id: string,
     username: string,
     email: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateListingSubscription = {
+  onCreateListing?:  {
+    __typename: "Listing",
+    id: string,
+    image: string,
+    type: string,
+    title: string,
+    description: string,
+    maxGuests: number,
+    petsAllowed?: boolean | null,
+    bed: number,
+    bath: number,
+    oldPrice?: number | null,
+    currentPrice: number,
+    latitude: number,
+    longitude: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateListingSubscription = {
+  onUpdateListing?:  {
+    __typename: "Listing",
+    id: string,
+    image: string,
+    type: string,
+    title: string,
+    description: string,
+    maxGuests: number,
+    petsAllowed?: boolean | null,
+    bed: number,
+    bath: number,
+    oldPrice?: number | null,
+    currentPrice: number,
+    latitude: number,
+    longitude: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteListingSubscription = {
+  onDeleteListing?:  {
+    __typename: "Listing",
+    id: string,
+    image: string,
+    type: string,
+    title: string,
+    description: string,
+    maxGuests: number,
+    petsAllowed?: boolean | null,
+    bed: number,
+    bath: number,
+    oldPrice?: number | null,
+    currentPrice: number,
+    latitude: number,
+    longitude: number,
     createdAt: string,
     updatedAt: string,
   } | null,
