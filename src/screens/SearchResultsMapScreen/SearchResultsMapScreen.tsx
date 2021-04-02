@@ -1,4 +1,4 @@
-import { CustomMarker } from '@components';
+import { CustomMarker, ListingCarouselItem } from '@components';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import MapView from 'react-native-maps';
@@ -30,6 +30,11 @@ const SearchResultsMapScreen = () => {
           />
         ))}
       </MapView>
+
+      {/* Listng Carousel */}
+      <View style={styles.carouselContainer}>
+        <ListingCarouselItem listing={places[0]} />
+      </View>
     </View>
   );
 };
