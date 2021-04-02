@@ -1,9 +1,10 @@
+import { Listing as ListingType, ListListingsQuery } from '@api';
+import API, { graphqlOperation, GraphQLResult } from '@aws-amplify/api';
 import { CustomMarker, ListingCarouselItem } from '@components';
+import { listListings } from '@graphql/queries';
 import React, { useEffect, useRef, useState } from 'react';
 import { FlatList, useWindowDimensions, View, ViewToken } from 'react-native';
 import MapView from 'react-native-maps';
-import places from '../../../assets/data/feed';
-import { ListingType } from '../../components/Listing/Listing';
 import styles from './styles';
 
 type ViewableChangedPropsType = {
@@ -15,6 +16,7 @@ const SearchResultsMapScreen = () => {
   const flatListRef = useRef(null);
   const mapRef = useRef(null);
   const viewConfig = useRef({ itemVisiblePercentThreshold: 70 });
+  const [listings, setListings] = useState<ListingType[] | null>(null);
 
   const onViewChanged = useRef(
     ({ viewableItems }: ViewableChangedPropsType) => {
@@ -28,9 +30,9 @@ const SearchResultsMapScreen = () => {
 
   useEffect(() => {
     if (setSelectedPlaceId === null || flatListRef === null) return;
-
+    if (!listings) return;
     // get index
-    const index = places.findIndex(
+    const index = listings.findIndex(
       (place: ListingType) => place.id === selectedPlaceId
     );
     if (index === -1) return;
@@ -38,15 +40,32 @@ const SearchResultsMapScreen = () => {
     flatListRef?.current?.scrollToIndex({ index });
 
     // update map
-    const selectedPlace = places[index];
+    const selectedPlace = listings[index];
     const region = {
-      latitude: selectedPlace?.coordinate.latitude,
-      longitude: selectedPlace?.coordinate.longitude,
+      latitude: selectedPlace?.latitude,
+      longitude: selectedPlace?.longitude,
       latitudeDelta: 0.8,
       longitudeDelta: 0.8,
     };
     mapRef.current?.animateToRegion(region);
   }, [selectedPlaceId]);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const res = (await API.graphql(
+          graphqlOperation(listListings)
+        )) as GraphQLResult<ListListingsQuery>;
+        if (res.data?.listListings?.items) {
+          setListings(res.data.listListings.items);
+        }
+      } catch (error) {
+        console.error('error fetching listings', error);
+      }
+    };
+
+    fetchListings();
+  }, []);
 
   return (
     <View>
@@ -61,22 +80,26 @@ const SearchResultsMapScreen = () => {
           longitudeDelta: 0.8,
         }}
       >
-        {places.map((place: ListingType) => (
-          <CustomMarker
-            key={place.id}
-            coordinates={place.coordinate}
-            price={place.newPrice}
-            isSelected={place.id === selectedPlaceId}
-            onPress={() => setSelectedPlaceId(place.id)}
-          />
-        ))}
+        {listings &&
+          listings.map((place: ListingType) => (
+            <CustomMarker
+              key={place.id}
+              coordinates={{
+                latitude: place.latitude as number,
+                longitude: place.longitude as number,
+              }}
+              price={place.currentPrice as number}
+              isSelected={place.id === selectedPlaceId}
+              onPress={() => setSelectedPlaceId(place.id as string)}
+            />
+          ))}
       </MapView>
 
       {/* Carousel */}
       <View style={styles.carouselContainer}>
         <FlatList
           ref={flatListRef}
-          data={places}
+          data={listings}
           renderItem={({ item }) => <ListingCarouselItem listing={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}

@@ -1,12 +1,8 @@
-import { ListingDetails } from '@components';
 import { RouteProp } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import places from '../../../assets/data/feed';
 import { RootStackParamList } from '../../navigation/types';
-
-const listing = places[0];
 
 type ListingScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, 'Listing'>;
@@ -16,11 +12,7 @@ type ListingScreenProps = {
 const ListingScreen = ({ navigation, route }: ListingScreenProps) => {
   const listingId = route.params.listingId;
   console.log('listingId', listingId);
-  return (
-    <SafeAreaView>
-      <ListingDetails listing={listing} />
-    </SafeAreaView>
-  );
+  return <SafeAreaView>{/* <ListingDetails listing={} /> */}</SafeAreaView>;
 };
 
 export default ListingScreen;

@@ -1,3 +1,4 @@
+import { Listing as ListingType } from '@api';
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import {
@@ -8,23 +9,6 @@ import {
   View,
 } from 'react-native';
 import styles from './styles';
-
-export type ListingType = {
-  id: string;
-  image: string;
-  type: string;
-  title: string;
-  description: string;
-  bathroom: number;
-  bedroom: number;
-  oldPrice: number;
-  newPrice: number;
-  totalPrice: number;
-  coordinate: {
-    latitude: number;
-    longitude: number;
-  };
-};
 
 type ListingProps = {
   listing: ListingType;
@@ -50,7 +34,7 @@ const ListingCarouselItem = ({ listing }: ListingProps) => {
         <View style={styles.contentContainer}>
           {/* Details - Text */}
           <Text style={styles.detailsLabel}>
-            {listing.bedroom} bed ~ {listing.bathroom} beth
+            {listing.bed} bed ~ {listing.bath} bath
           </Text>
 
           {/* Type & Description - Text */}
@@ -60,7 +44,7 @@ const ListingCarouselItem = ({ listing }: ListingProps) => {
 
           {/* Price Details (old / new) - Text */}
           <Text style={styles.pricesLabel}>
-            <Text style={styles.newPriceLabel}>${listing.newPrice}</Text> /
+            <Text style={styles.newPriceLabel}>${listing.currentPrice}</Text> /
             night
           </Text>
         </View>

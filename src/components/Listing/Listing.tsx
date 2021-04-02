@@ -8,6 +8,8 @@ type ListingProps = {
   listing: ListingType;
 };
 
+const days = 7;
+
 const Listing = ({ listing }: ListingProps) => {
   const naigation = useNavigation();
 
@@ -26,7 +28,7 @@ const Listing = ({ listing }: ListingProps) => {
 
       {/* Details - Text */}
       <Text style={styles.detailsLabel}>
-        {listing.bedroom} bed ~ {listing.bathroom} beth
+        {listing.bed} bed ~ {listing.bath} bath
       </Text>
 
       {/* Type & Description - Text */}
@@ -37,11 +39,14 @@ const Listing = ({ listing }: ListingProps) => {
       {/* Price Details (old / new) - Text */}
       <Text style={styles.pricesLabel}>
         <Text style={styles.oldPriceLabel}>${listing.oldPrice}</Text>
-        <Text style={styles.newPriceLabel}> ${listing.newPrice}</Text>/ night
+        <Text style={styles.newPriceLabel}> ${listing.currentPrice}</Text>/
+        night
       </Text>
 
       {/* Total Price - Text */}
-      <Text style={styles.totalPriceLabel}>${listing.totalPrice} total</Text>
+      <Text style={styles.totalPriceLabel}>
+        ${listing.currentPrice * days} total
+      </Text>
     </Pressable>
   );
 };
