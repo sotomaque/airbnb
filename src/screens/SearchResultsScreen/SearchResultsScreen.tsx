@@ -27,11 +27,13 @@ const SearchResultsScreen = () => {
 
   return (
     <View>
-      <FlatList
-        data={listings}
-        renderItem={({ item }) => <Listing listing={item} />}
-        showsVerticalScrollIndicator={false}
-      />
+      {listings && (
+        <FlatList
+          data={listings}
+          renderItem={({ item }) => <Listing listing={item} />}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </View>
   );
 };
