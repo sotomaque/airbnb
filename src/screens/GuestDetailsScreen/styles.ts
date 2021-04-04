@@ -42,14 +42,13 @@ const styles = StyleSheet.create({
   },
   searchButton: {
     marginBottom: 30,
-    backgroundColor: '#ff5a60',
     alignItems: 'center',
     justifyContent: 'center',
     height: 50,
     marginHorizontal: 20,
     borderRadius: 10,
   },
-  searchLabel: { fontSize: 20, fontWeight: 'bold', color: 'white' },
+  searchLabel: { fontSize: 20, fontWeight: 'bold' },
 });
 
 export default styles;

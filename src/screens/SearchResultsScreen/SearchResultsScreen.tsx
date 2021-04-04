@@ -5,9 +5,14 @@ import { listListings } from '@graphql/queries';
 import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 
-const SearchResultsScreen = () => {
+type SearchResultsScreenProps = {
+  guests: number;
+};
+
+const SearchResultsScreen = ({ guests }: SearchResultsScreenProps) => {
   const [listings, setListings] = useState<ListingType[] | null>(null);
 
+  console.log('guests', guests);
   useEffect(() => {
     const fetchListings = async () => {
       try {

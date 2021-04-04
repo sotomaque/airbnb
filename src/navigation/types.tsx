@@ -20,10 +20,24 @@ export type SearchResultsTabParamList = {
 };
 
 export type HomeParamList = {
-  Home: { screen: string; params: { screen: string } } | undefined;
+  Home:
+    | {
+        screen: string;
+        params: {
+          screen: string;
+          params: {
+            guests: number;
+          };
+        };
+      }
+    | undefined;
   DestinationSearch: undefined;
   GuestDetails: undefined;
-  SearchResults: undefined;
+  SearchResults:
+    | {
+        guests: number;
+      }
+    | undefined;
 };
 
 export type SearchParamList = {
@@ -32,5 +46,7 @@ export type SearchParamList = {
 
 export type ExploreParamList = {
   Welcome: undefined;
-  SearchResults: undefined;
+  SearchResults: {
+    guests: number;
+  };
 };

@@ -11,13 +11,16 @@ type ViewableChangedPropsType = {
   viewableItems: ViewToken[];
 };
 
-const SearchResultsMapScreen = () => {
+type SearchResultsMapScreenPropType = {
+  guests: number;
+};
+const SearchResultsMapScreen = ({ guests }: SearchResultsMapScreenPropType) => {
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
   const flatListRef = useRef(null);
   const mapRef = useRef(null);
   const viewConfig = useRef({ itemVisiblePercentThreshold: 70 });
   const [listings, setListings] = useState<ListingType[] | null>(null);
-
+  console.log('guests in map', guests);
   const onViewChanged = useRef(
     ({ viewableItems }: ViewableChangedPropsType) => {
       if (viewableItems.length > 0) {

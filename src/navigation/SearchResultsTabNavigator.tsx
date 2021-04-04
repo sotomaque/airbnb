@@ -1,15 +1,22 @@
 import Colors from '@constants/Colors';
 import useColorScheme from '@hooks/useColorScheme';
+import { RouteProp } from '@react-navigation/core';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { SearchResultsMapScreen, SearchResultsScreen } from '@screens';
 import * as React from 'react';
-import { SearchResultsTabParamList } from './types';
+import { ExploreParamList, SearchResultsTabParamList } from './types';
 
 const SearchTab = createMaterialTopTabNavigator<SearchResultsTabParamList>();
 
-const SearchResultsTabNavigator = () => {
-  const colorScheme = useColorScheme();
+type SearchResultsTabNavigatorProps = {
+  route: RouteProp<ExploreParamList, 'SearchResults'>;
+};
 
+const SearchResultsTabNavigator = ({
+  route,
+}: SearchResultsTabNavigatorProps) => {
+  const colorScheme = useColorScheme();
+  const guests = route.params.guests;
   return (
     <SearchTab.Navigator
       tabBarOptions={{
@@ -19,8 +26,12 @@ const SearchResultsTabNavigator = () => {
         },
       }}
     >
-      <SearchTab.Screen name='List' component={SearchResultsScreen} />
-      <SearchTab.Screen name='Map' component={SearchResultsMapScreen} />
+      <SearchTab.Screen name='List'>
+        {() => <SearchResultsScreen guests={guests} />}
+      </SearchTab.Screen>
+      <SearchTab.Screen name='Map'>
+        {() => <SearchResultsMapScreen guests={guests} />}
+      </SearchTab.Screen>
     </SearchTab.Navigator>
   );
 };

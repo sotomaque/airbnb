@@ -101,17 +101,35 @@ const GuestDetailsScreen = ({ navigation }: GuestDetailsScreenProps) => {
 
       {/* Search Button */}
       <Pressable
-        style={styles.searchButton}
+        disabled={!adults}
+        style={[
+          styles.searchButton,
+          {
+            backgroundColor: !adults ? 'white' : '#ff5a60',
+          },
+        ]}
         onPress={() => {
           navigation.navigate('Home', {
             screen: 'Explore',
             params: {
               screen: 'SearchResults',
+              params: {
+                guests: adults + children,
+              },
             },
           });
         }}
       >
-        <Text style={styles.searchLabel}>Search</Text>
+        <Text
+          style={[
+            styles.searchLabel,
+            {
+              color: !adults ? '#ff5a60' : 'white',
+            },
+          ]}
+        >
+          Search
+        </Text>
       </Pressable>
     </SafeAreaView>
   );
