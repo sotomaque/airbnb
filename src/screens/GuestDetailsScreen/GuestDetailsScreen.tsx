@@ -1,3 +1,4 @@
+import { RouteProp } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
@@ -6,13 +7,14 @@ import styles from './styles';
 
 type GuestDetailsScreenProps = {
   navigation: StackNavigationProp<HomeParamList, 'GuestDetails'>;
+  route: RouteProp<HomeParamList, 'GuestDetails'>;
 };
 
-const GuestDetailsScreen = ({ navigation }: GuestDetailsScreenProps) => {
+const GuestDetailsScreen = ({ navigation, route }: GuestDetailsScreenProps) => {
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
-
+  const { viewport } = route.params;
   return (
     <SafeAreaView style={{ justifyContent: 'space-between', height: '100%' }}>
       {/* Guest Details Container */}
@@ -115,6 +117,7 @@ const GuestDetailsScreen = ({ navigation }: GuestDetailsScreenProps) => {
               screen: 'SearchResults',
               params: {
                 guests: adults + children,
+                viewport,
               },
             },
           });

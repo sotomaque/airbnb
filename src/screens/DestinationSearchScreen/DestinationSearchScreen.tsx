@@ -20,7 +20,9 @@ const DestinationSearchScreen = ({
         <GooglePlacesAutocomplete
           placeholder='Where are you going?'
           onPress={(data, details = null) => {
-            navigation.navigate('GuestDetails');
+            navigation.navigate('GuestDetails', {
+              viewport: details?.geometry.viewport,
+            });
           }}
           enablePoweredByContainer={false}
           suppressDefaultStyles

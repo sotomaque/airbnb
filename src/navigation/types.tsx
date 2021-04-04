@@ -1,3 +1,5 @@
+import { Point } from 'react-native-google-places-autocomplete';
+
 export type RootStackParamList = {
   Root: undefined;
   DestinationSearch: undefined;
@@ -27,12 +29,21 @@ export type HomeParamList = {
           screen: string;
           params: {
             guests: number;
+            viewport: {
+              northeast: Point;
+              southwest: Point;
+            };
           };
         };
       }
     | undefined;
   DestinationSearch: undefined;
-  GuestDetails: undefined;
+  GuestDetails: {
+    viewport: {
+      northeast: Point;
+      southwest: Point;
+    };
+  };
   SearchResults:
     | {
         guests: number;
@@ -48,5 +59,9 @@ export type ExploreParamList = {
   Welcome: undefined;
   SearchResults: {
     guests: number;
+    viewport: {
+      northeast: Point;
+      southwest: Point;
+    };
   };
 };

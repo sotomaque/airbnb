@@ -1,7 +1,5 @@
-import { Listing as ListingType, ListListingsQuery } from '@api';
-import API, { graphqlOperation, GraphQLResult } from '@aws-amplify/api';
+import { Listing as ListingType } from '@api';
 import { CustomMarker, ListingCarouselItem } from '@components';
-import { listListings } from '@graphql/queries';
 import React, { useEffect, useRef, useState } from 'react';
 import { FlatList, useWindowDimensions, View, ViewToken } from 'react-native';
 import MapView from 'react-native-maps';
@@ -12,14 +10,15 @@ type ViewableChangedPropsType = {
 };
 
 type SearchResultsMapScreenPropType = {
-  guests: number;
+  listings: ListingType[] | null;
 };
-const SearchResultsMapScreen = ({ guests }: SearchResultsMapScreenPropType) => {
+const SearchResultsMapScreen = ({
+  listings,
+}: SearchResultsMapScreenPropType) => {
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
   const flatListRef = useRef(null);
   const mapRef = useRef(null);
   const viewConfig = useRef({ itemVisiblePercentThreshold: 70 });
-  const [listings, setListings] = useState<ListingType[] | null>(null);
   const onViewChanged = useRef(
     ({ viewableItems }: ViewableChangedPropsType) => {
       if (viewableItems.length > 0) {
@@ -29,7 +28,6 @@ const SearchResultsMapScreen = ({ guests }: SearchResultsMapScreenPropType) => {
     }
   );
   const width = useWindowDimensions().width;
-
   useEffect(() => {
     if (setSelectedPlaceId === null || flatListRef === null) return;
     if (!listings) return;
@@ -51,29 +49,6 @@ const SearchResultsMapScreen = ({ guests }: SearchResultsMapScreenPropType) => {
     };
     mapRef.current?.animateToRegion(region);
   }, [selectedPlaceId]);
-
-  useEffect(() => {
-    const fetchListings = async () => {
-      try {
-        const res = (await API.graphql(
-          graphqlOperation(listListings, {
-            filter: {
-              maxGuests: {
-                ge: guests,
-              },
-            },
-          })
-        )) as GraphQLResult<ListListingsQuery>;
-        if (res.data?.listListings?.items) {
-          setListings(res.data.listListings.items);
-        }
-      } catch (error) {
-        console.error('error fetching listings', error);
-      }
-    };
-
-    fetchListings();
-  }, []);
 
   return (
     <View>

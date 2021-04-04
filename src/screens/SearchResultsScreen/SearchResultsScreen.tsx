@@ -1,40 +1,13 @@
-import { Listing as ListingType, ListListingsQuery } from '@api';
-import API, { graphqlOperation, GraphQLResult } from '@aws-amplify/api';
+import { Listing as ListingType } from '@api';
 import { Listing } from '@components';
-import { listListings } from '@graphql/queries';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FlatList, View } from 'react-native';
 
 type SearchResultsScreenProps = {
-  guests: number;
+  listings: ListingType[] | null;
 };
 
-const SearchResultsScreen = ({ guests }: SearchResultsScreenProps) => {
-  const [listings, setListings] = useState<ListingType[] | null>(null);
-
-  useEffect(() => {
-    const fetchListings = async () => {
-      try {
-        const res = (await API.graphql(
-          graphqlOperation(listListings, {
-            filter: {
-              maxGuests: {
-                ge: guests,
-              },
-            },
-          })
-        )) as GraphQLResult<ListListingsQuery>;
-        if (res.data?.listListings?.items) {
-          setListings(res.data.listListings.items);
-        }
-      } catch (error) {
-        console.error('error fetching listings', error);
-      }
-    };
-
-    fetchListings();
-  }, []);
-
+const SearchResultsScreen = ({ listings }: SearchResultsScreenProps) => {
   return (
     <View>
       {listings && (
