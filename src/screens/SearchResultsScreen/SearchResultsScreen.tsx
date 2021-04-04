@@ -12,12 +12,17 @@ type SearchResultsScreenProps = {
 const SearchResultsScreen = ({ guests }: SearchResultsScreenProps) => {
   const [listings, setListings] = useState<ListingType[] | null>(null);
 
-  console.log('guests', guests);
   useEffect(() => {
     const fetchListings = async () => {
       try {
         const res = (await API.graphql(
-          graphqlOperation(listListings)
+          graphqlOperation(listListings, {
+            filter: {
+              maxGuests: {
+                ge: guests,
+              },
+            },
+          })
         )) as GraphQLResult<ListListingsQuery>;
         if (res.data?.listListings?.items) {
           setListings(res.data.listListings.items);

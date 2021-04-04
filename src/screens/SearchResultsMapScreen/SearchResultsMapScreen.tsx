@@ -20,7 +20,6 @@ const SearchResultsMapScreen = ({ guests }: SearchResultsMapScreenPropType) => {
   const mapRef = useRef(null);
   const viewConfig = useRef({ itemVisiblePercentThreshold: 70 });
   const [listings, setListings] = useState<ListingType[] | null>(null);
-  console.log('guests in map', guests);
   const onViewChanged = useRef(
     ({ viewableItems }: ViewableChangedPropsType) => {
       if (viewableItems.length > 0) {
@@ -57,7 +56,13 @@ const SearchResultsMapScreen = ({ guests }: SearchResultsMapScreenPropType) => {
     const fetchListings = async () => {
       try {
         const res = (await API.graphql(
-          graphqlOperation(listListings)
+          graphqlOperation(listListings, {
+            filter: {
+              maxGuests: {
+                ge: guests,
+              },
+            },
+          })
         )) as GraphQLResult<ListListingsQuery>;
         if (res.data?.listListings?.items) {
           setListings(res.data.listListings.items);
